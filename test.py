@@ -4,7 +4,7 @@ BLUE_PIN  = 24
 
 # Number of color changes per step (more is faster, less is slower).
 # You also can use 0.X floats.
-STEPS     = 1
+#STEPS     = 1
 
 ###### END ######
 
@@ -23,6 +23,7 @@ bright = 255
 r = 255.0
 g = 0.0
 b = 0.0
+steps = 1
 
 brightChanged = False
 abort = False
@@ -64,6 +65,7 @@ def checkKey():
 	global brightChanged
 	global state
 	global abort
+	global steps
 	
 	while True:
 		c = getCh()
@@ -75,7 +77,15 @@ def checkKey():
 			
 			bright = bright + 1
 			print ("Current brightness: %d" % bright)
-			
+
+		if c == 's':
+			steps *= 0.8
+			print ("Current Steps: %d" % steps)
+
+		if c == 'f':
+			steps *= 1.2
+			print ("Current Steps: %d" % steps)
+
 		if c == '-' and bright > 0 and not brightChanged:
 			brightChanged = True
 			time.sleep(0.01)
@@ -110,36 +120,36 @@ print ("+ / - = Increase / Decrease brightness")
 print ("p / r = Pause / Resume")
 print ("c = Abort Program")
 
-#set init values for script
+#set init values for LEDs
 setLights(RED_PIN, r)
 setLights(GREEN_PIN, g)
 setLights(BLUE_PIN, b)
 
-
+#Main Endless Loop with Color Fading
 while abort == False:
 	if state and not brightChanged:
 		if r == 255 and b == 0 and g < 255:
-			g = updateColor(g, STEPS)
+			g = updateColor(g, steps)
 			setLights(GREEN_PIN, g)
 		
 		elif g == 255 and b == 0 and r > 0:
-			r = updateColor(r, -STEPS)
+			r = updateColor(r, -steps)
 			setLights(RED_PIN, r)
 		
 		elif r == 0 and g == 255 and b < 255:
-			b = updateColor(b, STEPS)
+			b = updateColor(b, steps)
 			setLights(BLUE_PIN, b)
 		
 		elif r == 0 and b == 255 and g > 0:
-			g = updateColor(g, -STEPS)
+			g = updateColor(g, -steps)
 			setLights(GREEN_PIN, g)
 		
 		elif g == 0 and b == 255 and r < 255:
-			r = updateColor(r, STEPS)
+			r = updateColor(r, steps)
 			setLights(RED_PIN, r)
 		
 		elif r == 255 and g == 0 and b > 0:
-			b = updateColor(b, -STEPS)
+			b = updateColor(b, -steps)
 			setLights(BLUE_PIN, b)
 	
 print ("Aborting...")
