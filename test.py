@@ -80,7 +80,7 @@ def checkKey():
 
 		if c == 's':
 			steps *= 0.8
-			print ("Current Steps: ", round(steps,5))
+			print ("Current Steps: ", round(steps,5)) # Round Value to 5 digits after comma
 
 		if c == 'f':
 			steps *= 1.2
@@ -160,4 +160,4 @@ setLights(BLUE_PIN, 0)
 
 time.sleep(0.5)
 
-pi.stop()
+pi.stop()#Stop "pigpio.pi()" - Process
