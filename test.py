@@ -80,11 +80,15 @@ def checkKey():
 
 		if c == 's':
 			steps *= 0.8
-			print ("Current Steps: %d" % steps)
+			steps = (int)(steps*10000)
+			steps /= 10000
+			print ("Current Steps: ", steps)
 
 		if c == 'f':
 			steps *= 1.2
-			print ("Current Steps: %d" % steps)
+			steps = (int)(steps*10000)
+			steps /= 10000
+			print ("Current Steps: ", steps)
 
 		if c == '-' and bright > 0 and not brightChanged:
 			brightChanged = True
