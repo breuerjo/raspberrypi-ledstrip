@@ -20,7 +20,7 @@ import pigpio
 import time
 
 bright = 255
-r = 255.0
+r = 0.0
 g = 0.0
 b = 0.0
 steps = 1
@@ -31,7 +31,7 @@ state = True	#boolean if light show is on or paused
 
 try:
 	pid = subprocess.check_output(["pgrep", "pigpio"])
-	print("pid:", pid)
+	#print("pid:", pid)
 
 except:
 	print('Error --> Start pipiod process')
@@ -54,12 +54,12 @@ setLights(RED_PIN, r)
 setLights(GREEN_PIN, g)
 setLights(BLUE_PIN, b)
 
-time.sleep(10000)
+time.sleep(2)
 
 
-	
-print ("Aborting...")
 
+#print ("Aborting...")
+#turn leds off
 setLights(RED_PIN, 0)
 setLights(GREEN_PIN, 0)
 setLights(BLUE_PIN, 0)

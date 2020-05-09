@@ -16,9 +16,6 @@ print "PIR-Modul gestartet (CTRL-C to exit)"
 # Set pin as input
 GPIO.setup(GPIO_PIR,GPIO.IN)
 
-# Initialisierung
-Read  = 0
-State = 0
 
 print "Warten, bis PIR im Ruhezustand ist ..."
 
@@ -31,7 +28,7 @@ print "Bereit..."
 def MOTION(PIR_GPIO):
   print "%s - Bewegung erkannt!" % datetime.datetime.now()
   try:
-      os.system('python ~/home/Desktop/leds/led_welcome.py')
+      os.system('python ~/Desktop/leds/led_welcome.py')
   except:
       print('Error executing led_welcome.py script')
 
@@ -42,7 +39,7 @@ try:
   GPIO.add_event_detect(GPIO_PIR, GPIO.RISING, callback=MOTION)
   # laenger schlafen - Callback wird durch die Flanke aktiviert
   while True:
-    time.sleep(10000)
+    time.sleep(10)
 
 except KeyboardInterrupt:
   # Programm beenden
