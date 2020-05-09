@@ -4,6 +4,8 @@ import RPi.GPIO as GPIO
 import time
 import datetime
 
+import os
+
 # BCM GPIO-Referenen verwenden (anstelle der Pin-Nummern)
 # und GPIO-Eingang definieren
 GPIO.setmode(GPIO.BCM)
@@ -28,15 +30,19 @@ print "Bereit..."
 # Callback-Funktion
 def MOTION(PIR_GPIO):
   print "%s - Bewegung erkannt!" % datetime.datetime.now()
+  try:
+      os.system('python ~/home/Desktop/leds/led_welcome.py')
+  except:
+      print('Error executing led_welcome.py script')
 
-print "%s - Warten auf Bewegung" % datetime.datetime.now()
+# print "%s - Warten auf Bewegung" % datetime.datetime.now()
 
 try:
   # Ereignis definieren: steigende Flanke
   GPIO.add_event_detect(GPIO_PIR, GPIO.RISING, callback=MOTION)
   # laenger schlafen - Callback wird durch die Flanke aktiviert
   while True:
-    time.sleep(100)
+    time.sleep(10000)
 
 except KeyboardInterrupt:
   # Programm beenden
