@@ -12,6 +12,7 @@ BLUE_PIN  = 24
 
 
 import os
+import subprocess
 import sys
 import termios
 import tty
@@ -28,6 +29,18 @@ steps = 1
 brightChanged = False
 abort = False
 state = True	#boolean if light show is on or paused
+
+try:
+	pid = subprocess.check_output(["pgrep", "pigpio"])
+	print("pid:", pid)
+
+except:
+	print('Error --> Start pipiod process')
+	os.system('sudo pigpiod')
+	time.sleep(1)
+	#if pid < 1000:
+	#print('Start pigiod process')
+	#os.system('sudo pigpiod') #start pigpiod process if pi got restarted
 
 pi = pigpio.pi()
 
