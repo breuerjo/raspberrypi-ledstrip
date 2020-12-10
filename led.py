@@ -130,6 +130,7 @@ start_new_thread(checkKey, ()) # Start a thread and execute funtion --> loop wit
 
 
 print ("+ / - = Increase / Decrease brightness")
+print ("f / s = Increase / Decrease fading speed")
 print ("p / r = Pause / Resume")
 print ("c = Abort Program")
 
