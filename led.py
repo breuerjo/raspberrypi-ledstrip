@@ -24,7 +24,7 @@ bright = 255
 r = 255.0
 g = 0.0
 b = 0.0
-steps = 1
+steps = 0.003
 
 brightChanged = False
 abort = False

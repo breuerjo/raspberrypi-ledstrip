@@ -46,16 +46,24 @@ pi = pigpio.pi()
 def setLights(pin, brightness):
 	realBrightness = int(int(brightness) * (float(bright) / 255.0))
 	pi.set_PWM_dutycycle(pin, realBrightness) #Set value of the port --> e.g. pigpio pigs p 17 255
+r = 0
+g = 0
+b = 0
 
-b = 255
 
-#set init values for LEDs
-setLights(RED_PIN, r)
-setLights(GREEN_PIN, g)
-setLights(BLUE_PIN, b)
+while (b < 255):
+	setLights(RED_PIN, r)
+	setLights(GREEN_PIN, g)
+	setLights(BLUE_PIN, b)
+	b += 1
+	time.sleep(0.002)
 
 time.sleep(2)
 
+while (b >= 0):
+	setLights(BLUE_PIN, b)
+	b -= 1
+	time.sleep(0.002)
 
 
 #print ("Aborting...")
@@ -63,6 +71,9 @@ time.sleep(2)
 setLights(RED_PIN, 0)
 setLights(GREEN_PIN, 0)
 setLights(BLUE_PIN, 0)
+time.sleep(0.01)
+
+
 
 time.sleep(0.5)
 
